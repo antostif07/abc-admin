@@ -20,7 +20,7 @@ export const CoursesList = (props: any) => (
         <Datagrid rowClick='show'>
             <FieldGuesser source="name" label='Nom' />
             <FieldGuesser source="description" />
-            <ReferenceField label='Centre de formation' source='center' reference='centers'>
+            <ReferenceField label='Centre de formation' source='center' reference='centers' >
                 <TextField source='name' />
             </ReferenceField>
         </Datagrid>

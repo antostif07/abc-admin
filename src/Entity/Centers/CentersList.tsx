@@ -17,7 +17,7 @@ const Empty = () => (
 
 export const CentersList = (props: any) => (
     <List {...props}>
-        <Datagrid>
+        <Datagrid rowClick='show'>
             <FieldGuesser source="name" />
             <FieldGuesser source="description" />
         </Datagrid>
