@@ -1,28 +1,55 @@
-import { Typography, Button } from '@mui/material';
-import { ArrayField, Link, Datagrid, ReferenceField, Show, SimpleShowLayout, TextField } from 'react-admin';
+// @ts-nocheck
+import { Typography, Button, withStyles } from '@mui/material';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import { Link, Datagrid, ReferenceField, Show, TextField, TabbedShowLayout, Tab, RichTextField, ReferenceManyField, ShowButton } from 'react-admin';
 
-const CreateLevelButton = () => (
-    <Button>
-        <Link to={'/levels/create'}>
-        Add Level
-        </Link>
-    </Button>
-)
+const styles = {
+    button: {
+      marginTop: '1em'
+    }
+  };
 
-export const CourseShow = () => (
-    <Show>
-        <SimpleShowLayout>
-            <TextField source="name" />
-            <TextField source="description" />
-            <ReferenceField source='center' reference='centers'>
-                <TextField source="name" />
-            </ReferenceField>
-            <ArrayField source='levels'>
-                <Datagrid empty={<CreateLevelButton />}>
-                    <TextField source='name' />
-                    <TextField source='degree' />
-                </Datagrid>
-            </ArrayField>
-        </SimpleShowLayout>
-    </Show>
-);
+const CreateLevelButton = (props) => {
+    
+    return (
+        <Button
+            variant="raised"
+            component={Link}
+            to={`/levels/create?course_id=`}
+            label="Add level"
+        >
+            Add Level
+        </Button>
+    )
+}
+
+export const CourseShow = (props) => {
+    return (
+        <Show {...props}>
+            <TabbedShowLayout>
+                <Tab label={'Summary'}>
+                    <TextField source='id' />
+                    <TextField source="name" />
+                    <ReferenceField source='center' reference='centers'>
+                        <TextField source="name" />
+                    </ReferenceField>
+                </Tab>
+                <Tab label='Description'>
+                    <RichTextField source="description" label="" />
+                </Tab>
+                <Tab label="Levels" path="levels">
+                    <ReferenceManyField
+                        reference='levels'
+                        target='course_id'
+                    >
+                        <Datagrid>
+                            <TextField source='name' />
+                            <ShowButton />
+                        </Datagrid>
+                    </ReferenceManyField>
+                    <CreateLevelButton {...props} />
+                </Tab>
+            </TabbedShowLayout>
+        </Show>
+    )
+}

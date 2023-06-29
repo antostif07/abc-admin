@@ -8,6 +8,7 @@ import { CenterCreate } from './Entity/Centers/CenterCreate';
 import { CourseShow } from './Entity/Courses/CourseShow';
 import { CourseEdit } from './Entity/Courses/CourseEdit';
 import { AdminLayout } from './AdminLayout/AdminLayout';
+import { LevelCreate } from './Entity/Levels/LevelCreate';
 
 export const App = () => (
     <HydraAdmin 
@@ -18,7 +19,7 @@ export const App = () => (
             />
         <ResourceGuesser name='centers' list={CentersList} create={CenterCreate} />
         <ResourceGuesser name='users' />
-        <ResourceGuesser name='levels' />
+        <ResourceGuesser name='levels' create={LevelCreate} />
     </HydraAdmin>
 );
 

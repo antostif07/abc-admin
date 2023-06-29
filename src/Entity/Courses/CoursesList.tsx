@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { FieldGuesser } from '@api-platform/admin';
 import { Box, Button, Typography } from '@mui/material';
-import {List, CreateButton, Datagrid, TextField, ReferenceField} from 'react-admin'
+import {List, CreateButton, Datagrid, TextField, ReferenceField, ShowButton} from 'react-admin'
 
 const Empty = () => (
     <Box textAlign="center" m={1}>
@@ -15,7 +16,7 @@ const Empty = () => (
     </Box>
 );
 
-export const CoursesList = (props: any) => (
+export const CoursesList = (props) => (
     <List {...props}>
         <Datagrid rowClick='show'>
             <FieldGuesser source="name" label='Nom' />
@@ -23,6 +24,7 @@ export const CoursesList = (props: any) => (
             <ReferenceField label='Centre de formation' source='center' reference='centers' >
                 <TextField source='name' />
             </ReferenceField>
+            <ShowButton />
         </Datagrid>
     </List>
 )
