@@ -10,51 +10,50 @@ const styles = {
     }
   };
 
-const CreateLevelButton = (props) => {
-    const course = useRecordContext()
+const CreateChapterButton = (props) => {
+    const level = useRecordContext()
 
-    console.log(course);
+    console.log(level);
     return (
         <Button
             variant="raised"
             component={Link}
-            to={`/levels/create?course_id=${course ? course.id : 'll'}`}
-            label="Add level"
+            to={`/chapters/create?level_id=${level ? level.id : null}`}
+            label="Add Chapter"
         >
-            Add Level
+            Add Chapter
         </Button>
     )
 }
 
-export const CourseShow = (props) => {
+export const LevelShow = (props) => {
     return (
         <Show {...props}>
             <TabbedShowLayout>
                 <Tab label={'Summary'}>
                     <TextField source='id' />
                     <TextField source="name" />
-                    <ReferenceField source='center' reference='centers'>
+                    <ReferenceField source='course' reference='courses'>
                         <TextField source="name" />
                     </ReferenceField>
                 </Tab>
                 <Tab label='Description'>
-                    {/* <RichTextField source="description" label="" /> */}
-                    <FunctionField
+                <FunctionField
                         label='Description'
                         render={record => <ReactMarkdown>{record.description}</ReactMarkdown>}
                     />
                 </Tab>
-                <Tab label="Levels" path="levels">
+                <Tab label="Chapters" path="chapters">
                     <ReferenceManyField
-                        reference='levels'
-                        target='course_id'
+                        reference='chapters'
+                        target='level_id'
                     >
                         <Datagrid>
                             <TextField source='name' />
                             <ShowButton />
                         </Datagrid>
                     </ReferenceManyField>
-                    <CreateLevelButton {...props} />
+                    <CreateChapterButton {...props} />
                 </Tab>
             </TabbedShowLayout>
         </Show>
