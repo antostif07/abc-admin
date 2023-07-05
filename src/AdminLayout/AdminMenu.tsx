@@ -5,5 +5,6 @@ export const AdminMenu = () => (
         <Menu.ResourceItem name="courses" />
         <Menu.ResourceItem name="centers" />
         <Menu.ResourceItem name="users" />
+        <Menu.ResourceItem name='images' />
     </Menu>
 )

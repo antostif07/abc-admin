@@ -10,5 +10,5 @@ export default defineConfig({
     server: {
         host: true,
     },
-    base: './',
+    base: 'https://aht-sarl.com/abc-admin/',
 });

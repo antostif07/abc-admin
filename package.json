@@ -5,13 +5,15 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@api-platform/admin": "^3.4.3",
     "@api-platform/api-doc-parser": "^0.16.1",
     "@mui/material": "^5.13.6",
     "@uiw/react-md-editor": "^3.23.3",
+    "intl-tel-input": "^18.1.7",
     "ra-data-fakerest": "^4.9.2",
     "react": "^18.2.0",
     "react-admin": "^4.9.0",
