@@ -4,13 +4,7 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import { Link, Datagrid, ReferenceField, Show, TextField, TabbedShowLayout, Tab, RichTextField, ReferenceManyField, ShowButton, useRecordContext, FunctionField } from 'react-admin';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
-const styles = {
-    button: {
-      marginTop: '1em'
-    }
-  };
-
-const CreateLevelButton = (props) => {
+const CreateLevelButton = () => {
     const course = useRecordContext()
 
     console.log(course);
@@ -51,6 +45,7 @@ export const CourseShow = (props) => {
                     >
                         <Datagrid>
                             <TextField source='name' />
+                            <TextField source='degree' />
                             <ShowButton />
                         </Datagrid>
                     </ReferenceManyField>
