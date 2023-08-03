@@ -1,11 +1,11 @@
 import { FieldGuesser } from '@api-platform/admin';
 import { Avatar, Box, Button, Typography } from '@mui/material';
-import {List, CreateButton, Datagrid, TextField, ReferenceField, ShowButton, FunctionField, EditButton} from 'react-admin'
+import {List, CreateButton, Datagrid, TextField, ReferenceField, ShowButton, FunctionField} from 'react-admin'
 
 const Empty = () => (
     <Box textAlign="center" m={1}>
         <Typography variant="h4" paragraph>
-            No products available
+            No Levels available
         </Typography>
         <Typography variant="body1">
             Create one or import from a file
@@ -15,7 +15,7 @@ const Empty = () => (
     </Box>
 );
 
-export const CoursesList = (props: any) => (
+export const LevelsList = (props: any) => (
     <List {...props}>
         <Datagrid rowClick='show'>
             <ReferenceField label='' source='cover' reference='images' >
@@ -26,12 +26,12 @@ export const CoursesList = (props: any) => (
                 />
             </ReferenceField>
             <FieldGuesser source="name" label='Nom' />
-            <FieldGuesser source="briefDescription" label="Résumé" />
-            <ReferenceField label='Centre de formation' source='center' reference='centers' link='show' >
+            <FieldGuesser source='degree' label='Niveau' />
+            {/* <FieldGuesser source="description" /> */}
+            <ReferenceField label='Cours' source='course' reference='courses' link='show' >
                 <TextField source='name' />
             </ReferenceField>
             <ShowButton />
-            <EditButton />
         </Datagrid>
     </List>
 )

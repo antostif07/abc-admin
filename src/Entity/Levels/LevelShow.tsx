@@ -49,6 +49,7 @@ export const LevelShow = (props) => {
                         target='level_id'
                     >
                         <Datagrid>
+                            <TextField source='degree' label='Niveau' />
                             <TextField source='name' />
                             <ShowButton />
                         </Datagrid>

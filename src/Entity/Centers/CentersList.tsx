@@ -1,6 +1,6 @@
 import { FieldGuesser } from '@api-platform/admin';
-import { Box, Button, Typography } from '@mui/material';
-import {List, CreateButton, Datagrid, TextField} from 'react-admin'
+import { Avatar, Box, Button, Typography } from '@mui/material';
+import {List, CreateButton, Datagrid, TextField, FunctionField, ReferenceField} from 'react-admin'
 
 const Empty = () => (
     <Box textAlign="center" m={1}>
@@ -18,6 +18,13 @@ const Empty = () => (
 export const CentersList = (props: any) => (
     <List {...props}>
         <Datagrid rowClick='show'>
+            <ReferenceField label='' source='cover' reference='images' >
+                <FunctionField
+                    render={(record: IImage) => {
+                        return <Avatar src={`${import.meta.env.VITE_API_URL}${record.contentUrl}`} sx={{ height: 96, width: 96}} />;
+                    }}
+                />
+            </ReferenceField>
             <FieldGuesser source="name" />
             <FieldGuesser source="description" />
         </Datagrid>

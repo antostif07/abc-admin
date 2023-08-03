@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
-import { ImageList, ImageListItem, Typography} from '@mui/material'
 import MDEditor, {commands, ExecuteState, TextAreaTextApi, TextAreaCommandOrchestrator, ICommandChildHandle} from '@uiw/react-md-editor';
 import { useInput } from 'react-admin';
+import { ImageSelector } from './ImageSelector';
 
 interface MarkdownInputProps {
     source: string;
@@ -10,64 +10,15 @@ interface MarkdownInputProps {
 }
 
 function SubChildren({ close, execute, getState, textApi, dispatch }) {
-  const [images, setImages] = useState([])
-
   const insert = (imageContentUrl) => {
     textApi.replaceSelection(`![image](${import.meta.env.VITE_API_URL}/${imageContentUrl})`)
     close()
   }
 
-  useEffect(() => {
-    const dataFetch = async () => {
-      const data = await (
-        await fetch(`${import.meta.env.VITE_API_URL}/images`)
-      ).json()
-
-      setImages(data['hydra:member'])
-    }
-
-    dataFetch()
-  }, [])
-
   return (
     <div style={{ width: 500, padding: 10, height: 300, overflow: 'scroll' }}>
       <div>Select Image</div>
-      <ImageList sx={{ width: 400, height: 200 }} cols={3} rowHeight={64}>
-        {
-          images ? (
-            images.length < 1 ? (
-              <Typography>No Images</Typography>
-            ) : (
-              images.map((item) => (
-                <ImageListItem key={item.img}>
-                  <img
-                    onClick={() => insert(item.contentUrl)}
-                    src={`${import.meta.env.VITE_API_URL}${item.contentUrl}?w=164&h=164&fit=crop&auto=format`}
-                    srcSet={`${import.meta.env.VITE_API_URL}${item.contentUrl}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                    alt={item.title}
-                    loading="lazy"
-                  />
-                </ImageListItem>
-              ))
-            )
-          ) : (
-            <Typography>Error Occured</Typography>
-          )
-        }
-      </ImageList>
-      {/* <input type="text" onChange={(e) => setValue(e.target.value)} /> */}
-      {/* <button
-        type="button"
-        onClick={() => {
-          dispatch({ $value: '~~~~~~' })
-          console.log('> execute: >>>>>', getState())
-        }}
-      >
-        State
-      </button> */}
-      {/* <button type="button" onClick={insert}>Insert</button> */}
-      {/* <button type="button" onClick={() => close()}>Close</button> */}
-      {/* <button type="button" onClick={() => execute()}>Execute</button> */}
+      <ImageSelector handleClick={(item) => insert(item.contentUrl)} />
     </div>
   );
 }
