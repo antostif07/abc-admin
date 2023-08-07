@@ -42,7 +42,7 @@ export const CenterShow = (props: any) => {
                         render={(record: ICenter) => <ReactMarkdown>{record.description ?? ''}</ReactMarkdown>}
                     />
                 </Tab>
-                <Tab label="Course" path="courses">
+                <Tab label="Cours" path="courses">
                     <ReferenceManyField
                         reference='courses'
                         target='center_id'

@@ -1,6 +1,6 @@
 import { FieldGuesser } from '@api-platform/admin';
 import { Avatar, Box, Button, Typography } from '@mui/material';
-import {List, CreateButton, Datagrid, TextField, FunctionField, ReferenceField} from 'react-admin'
+import {List, CreateButton, Datagrid, TextField, FunctionField, ReferenceField, ShowButton, EditButton} from 'react-admin'
 
 const Empty = () => (
     <Box textAlign="center" m={1}>
@@ -26,7 +26,8 @@ export const CentersList = (props: any) => (
                 />
             </ReferenceField>
             <FieldGuesser source="name" />
-            <FieldGuesser source="description" />
+            <ShowButton />
+            <EditButton />
         </Datagrid>
     </List>
 )
